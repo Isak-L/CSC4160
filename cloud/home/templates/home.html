@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% load static %}
+
+{% block content %}
+
+
+<form method="POST" class= "search-form">  
+  <div class="form-row">
+      <div class="form-group col-md-2 col-lg-2">
+          <div class="input-group">
+              <input class="form-control py-2 border" type="search" name="firstname" placeholder="First Name.." />
+          </div>
+      </div>
+
+      <div class="form-group col-md-2 col-lg-2">
+          <div class="input-group">
+              <input class="form-control py-2 border" type="search" name="lastname" placeholder="Last Name.." />
+          </div>
+      </div>
+
+      <div class="form-group col-md-4 col-lg-4">
+          <select id="category" class="form-control" name="gender">
+            <option selected>Gender...</option>
+            <option value="male"   name = "gender_male">Male</option>
+            <option value="female" name = "gender_female">Female</option>
+          </select>
+      </div>
+  
+      <div class="form-group col-md-2 col-lg-2">
+          <div class="input-group">
+              <input class="form-control py-2 border-right-0 border" type="search" name="age" placeholder="Age.." />
+              <span class="input-group-append">
+                  <div class="input-group-text bg-transparent">
+                      <i class="fa fa-search"></i>
+                  </div>
+              </span>
+          </div>
+      </div>
+      <div class="form-group col-md-2 col-lg-2">
+        <button type="submit" class="btn btn-black" name = "search">Search</button>
+      </div>
+      
+  </div>       
+</form>
+
+
+
+<br>
+
+<!--List-->
+<table class="table table-hover table-responsive-sm">
+    <thead class = "thead-dark"> 
+      <tr>
+        <th>Patient ID</th>
+        <th>Patient Name</th>
+        <th>View Record</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      {{ docID }}
+
+      {% for patients in patient %}
+        <tr>
+          <td>{{ patients.pID }}</td>
+          <td>{{ patients.pFName }} {{ patients.pLName }}</td>
+          <td>
+            <!-- TO DO: BUTTON! -->
+            <form action = "{% url 'view_detail' %}" method = "post">
+                <input type = "hidden" name = "patientID" value = "{{ patients.pID }}">
+                <input type = "hidden" name = "doctorID" value = "{{ doctorID }}">
+                <button type = "submit" class = "btn btn-primary" name="view">View</button>
+            </form>
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

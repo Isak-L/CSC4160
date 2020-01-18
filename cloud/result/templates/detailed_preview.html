@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block li %}
+    <li class="nav-item">
+                
+        <button id="rumah" style="display:none" ></button>
+        <label for="rumah" style="float: right;">
+            <i class="material-icons btn btn-primary" style="background-color: black; border-color: black;">
+            home
+            </i>
+        </label>
+    
+    </li> 
+{% endblock %}   
+
+{% block content %}
+
+<main>
+    
+
+    <div class="row">
+        <div class="col">
+            <b>First Name:</b> {{ firstName }}
+            <br><b>Last Name:</b> {{ lastName }}
+            <br><b>Gender:</b> {{ gender }}
+            <br><b>Race:</b> {{ race }}
+            <br><b>Ethnicity:</b> {{ ethnicity }}
+            <br><b>Status:</b> {{ status }}
+            <br><b>Remark:</b> {{ remark }}
+            <br><b>Age:</b> {{ age }}
+        </div>
+    </div>
+    <img src={{resultPath}} style="max-width: 100%; margin-top: 1em; border: 1px transparent; border-radius: 5pt;"/>
+    
+</main>
+
+
+
+{% endblock %}

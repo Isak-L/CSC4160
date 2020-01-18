@@ -1,0 +1,15 @@
+1. turn on or make a python virtual environment with python 3
+
+2. navigate to current directory and run following code to install all dependencies
+ "pip install -r requirements.txt"
+
+3. Confiture imports
+	1-Cancernet import is in the pyimagesearch folder
+	2-set the model path into where the model weight is place from the file included here
+
+4. create a temporary image directory in the instance
+	1- for temp_img_dir path please set it as the newly made directory 
+
+5. configure the amazon bucket upload part at line 57-58
+
+6. set the result path in line 58 as the newly uploaded bucket object

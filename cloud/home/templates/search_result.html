@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% load static %}
+
+{% block content %}
+
+<!-- Search Form -->
+<div class="md-form mt-0">
+    <form action="{% url 'search_result' %}" method="get" class= "search-form">
+    <input class="form-control" name="q" type="text" placeholder="Search..." aria-label="Search">
+    </form>
+</div>
+
+<br>
+
+<!--List-->
+<table class="table table-hover table-responsive-sm">
+    <thead class = "thead-dark"> 
+        <tr>
+        <th>Cover</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Download</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for book in object_list %}
+        <tr>
+        <td>
+            {% if book.cover %}
+            <img src="{{ book.cover.url }}" alt="{{ book.title }}" style="width:100px;">
+            {% else %}
+            <span class="text-muted">No cover</span>
+            {% endif %}
+        </td>
+        <td>{{ book.title }}</td>
+        <td>{{ book.author }}</td>
+        <td>
+            <a href="{{ book.pdf.url }}" class="btn btn-primary btn-sm" target="_blank">
+            Download PDF
+            </a>
+        </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

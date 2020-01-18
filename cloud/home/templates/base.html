@@ -1,0 +1,76 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'css/forbase.css' %}" media = "screen">
+  <title>Cancer Image Detection System</title>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark mb-4 justify-content-between" style="background-color:#000000">
+        <div class="container">
+          <div class="font-weight-bold" id = "font-color">CANCER DETECTION SYSTEM</div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav sticky-top ml-auto">
+              
+              <li class="nav-item">
+                  <a href = "{{ backLink }}" class = "btn">Back</a>
+              </li> 
+
+              {% if user.is_authenticated %}
+              <li class="nav-item">
+                  <form method = "POST" action = "{% url 'logout' %}">
+                  {% csrf_token %}
+                      <button type = "submit" class = "btn" name="logout">Logout</button>
+                  </form>
+              </li>
+
+              {% endif %}
+            
+            </ul>
+          </div>
+        </div>
+    </nav>
+
+    <a class="btn btn-info" id = "btn-upload"  href={{uploadLink}}>Upload</a>
+    <div class = "background-div">
+        
+    </div>
+
+
+    {% if user.is_authenticated %}
+      <div class = "welcome-user"><h3>Welcome back, Dr. {{user.username}}</h3><br></div> 
+    {% endif %}
+              
+    <div class="container" id="container-body">
+        <div class="row justify-content-center">
+          <div class="col-lg-10 col-md-12">
+            <div class="card mb-4" id="container-body-inner">
+              <div class="card-body">
+                {% block content %}
+                {% endblock %} 
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script type = "text/javascript">
+  function preventBack() { window.history.forward(); }
+  setTimeout("preventBack()", 0);
+  window.onunload = function () { null };
+</script>     
+
+</body>
+</html>
